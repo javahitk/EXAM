@@ -563,14 +563,14 @@ and avgMarks. Write suitable getdata and printdata methods for this class. Also
 implement the abstract methods of the “Department” interface. Write a driver
 class to test the “Student” class.
 Package
-1. Create package of some mathematical
+3. Create package of some mathematical
 operations. Import those packages and take all inputs for the mathematical
 operation from standard input device
 
 
 Exception
 Handling
-2. Write a program called
+4. Write a program called
 “Factorial.java” that computes factorials and catches the result in an
 arrayoftype long for reuse. The long type of variables has its own range. For
 example 20! Is as high as the range of long type. So checks the argument passed
@@ -580,7 +580,7 @@ If x is less than
 positive”. If x is above the length of the array, throw an
 “IllegalArgumentException” with a message “result will overflow.” Here x is the
 value for w2hich we want to find the factorial.
-3. Write a program to throw the exception manually. 
+5. Write a program to throw the exception manually. 
   SOLUTION-:
   1.abstract class ThreeDObject {
     protected double dim1, dim2, dim3;
