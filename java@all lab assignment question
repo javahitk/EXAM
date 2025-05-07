@@ -1032,3 +1032,246 @@ public class ProducerConsumerTest {
     }
 }
 
+------------------------------------
+email:-
+import java.io.*;
+
+// User-defined exception for invalid email format
+class InvalidEmailException extends Exception {
+    public InvalidEmailException(String message) {
+        super(message);
+    }
+}
+
+// Class to validate email format
+class EmailValidator {
+    public static void validate(String email) throws InvalidEmailException {
+        // Basic validation: must contain one '@' and a dot '.' after '@'
+        if (email == null || !email.contains("@") || email.indexOf('@') != email.lastIndexOf('@')) {
+            throw new InvalidEmailException("Email must contain exactly one '@' symbol.");
+        }
+
+        int atIndex = email.indexOf('@');
+        if (atIndex == email.length() - 1 || !email.substring(atIndex).contains(".")) {
+            throw new InvalidEmailException("Email must contain '.' after '@'.");
+        }
+
+        // Optional: No spaces allowed
+        if (email.contains(" ")) {
+            throw new InvalidEmailException("Email must not contain spaces.");
+        }
+    }
+}
+
+public class EmailCheck {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter your email ID: ");
+        String email = br.readLine();
+
+        try {
+            EmailValidator.validate(email);
+            System.out.println("Email format is valid.");
+        } catch (InvalidEmailException e) {
+            System.out.println("Invalid Email: " + e.getMessage());
+        }
+    }
+}
+-----------------------------
+factorial buffer:-
+import java.io.*;
+
+class fact{
+    private long []arr;
+    //private int x;
+    
+    fact()
+    {
+        arr=new long[21];
+        
+    }
+    public long factfind(int x)
+    {
+        if(x==0 || x==1)
+        {
+            arr[x]=1;
+        }
+        else 
+        {
+            arr[x]=x*factfind(x-1);
+        }
+        return arr[x];
+    }
+    
+}
+public class Main {
+    
+    public static void main(String [] args)
+    {   try{
+        System.out.println("enter the number:");
+        BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
+        int x=Integer.parseInt(bf.readLine());
+        if(x>20)
+        {
+            throw new IllegalArgumentException("result will be overflow");
+
+        }
+        else if(x<0)
+        {
+            throw new IllegalArgumentException("value of x must be positive");
+
+        }
+        else
+        {
+            fact f=new fact();
+            System.out.println("factorial of "+x+" is "+f.factfind(x));
+
+        }
+    }
+    catch(IOException e)
+    {
+        System.out.println("Error reading input.");
+    }
+    catch(IllegalArgumentException e)
+    {
+        System.out.println(e.getMessage());
+    }
+}
+    
+}
+-------------------------------------
+mannual exception:-
+import java.io.*;
+
+// Custom class to demonstrate exception handling
+class NumberChecker {
+    public void checkNumber(int num) {
+        if (num < 0) {
+            // Throwing exception manually
+            throw new IllegalArgumentException("Negative number entered. Only positive numbers are allowed.");
+        } else {
+            System.out.println("You entered a valid number: " + num);
+        }
+    }
+}
+
+public class Mannual { // Ensure filename is Mannual.java
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        NumberChecker checker = new NumberChecker();
+
+        try {
+            System.out.print("Enter a number: ");
+            int number = Integer.parseInt(br.readLine());
+            checker.checkNumber(number); // May throw exception
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter an integer.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
+-------------------------
+hostel:-
+import java.io.*;
+
+// Interface Department
+interface Department {
+    // Attributes (implicitly public, static, final in interfaces - but we'll use as regular fields in implementation)
+    void getDepartmentData() throws IOException;
+    void printDepartmentData();
+}
+
+// Hostel class
+class Hostel {
+    String hostelName;
+    String hostelLocation;
+    int noOfRooms;
+
+    public void getHostelData(BufferedReader br) throws IOException {
+        System.out.print("Enter Hostel Name: ");
+        hostelName = br.readLine();
+
+        System.out.print("Enter Hostel Location: ");
+        hostelLocation = br.readLine();
+
+        System.out.print("Enter Number of Rooms: ");
+        noOfRooms = Integer.parseInt(br.readLine());
+    }
+
+    public void printHostelData() {
+        System.out.println("Hostel Name: " + hostelName);
+        System.out.println("Hostel Location: " + hostelLocation);
+        System.out.println("Number of Rooms: " + noOfRooms);
+    }
+}
+
+// Student class
+class Student extends Hostel implements Department {
+    String depName;
+    String depHead;
+    String studentName;
+    String regNo;
+    String electiveSubject;
+    float avgMarks;
+
+    public void getStudentData(BufferedReader br) throws IOException {
+        System.out.print("Enter Student Name: ");
+        studentName = br.readLine();
+
+        System.out.print("Enter Registration Number: ");
+        regNo = br.readLine();
+
+        System.out.print("Enter Elective Subject: ");
+        electiveSubject = br.readLine();
+
+        System.out.print("Enter Average Marks: ");
+        avgMarks = Float.parseFloat(br.readLine());
+    }
+
+    public void printStudentData() {
+        System.out.println("Student Name: " + studentName);
+        System.out.println("Registration Number: " + regNo);
+        System.out.println("Elective Subject: " + electiveSubject);
+        System.out.println("Average Marks: " + avgMarks);
+    }
+
+    // Implement Department interface methods
+    public void getDepartmentData() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter Department Name: ");
+        depName = br.readLine();
+
+        System.out.print("Enter Department Head: ");
+        depHead = br.readLine();
+    }
+
+    public void printDepartmentData() {
+        System.out.println("Department Name: " + depName);
+        System.out.println("Department Head: " + depHead);
+    }
+}
+
+// Driver class
+public class StudentTest {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Student student = new Student();
+
+        System.out.println("\n--- Enter Department Details ---");
+        student.getDepartmentData();
+
+        System.out.println("\n--- Enter Hostel Details ---");
+        student.getHostelData(br);
+
+        System.out.println("\n--- Enter Student Details ---");
+        student.getStudentData(br);
+
+        System.out.println("\n--- Displaying Full Student Information ---");
+        student.printDepartmentData();
+        student.printHostelData();
+        student.printStudentData();
+    }
+}
+
