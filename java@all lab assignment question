@@ -1,0 +1,1034 @@
+1.Write a class calledFactorial to print the factorial of an integer.
+2.Write a java program which will createan object,namely,'Car',following methods are   available and will work as:a.carStart():Will start the car with speed 30b.carSlow():will reduce the speed of the car to 20c.carFast():will increase the speed of the car to 30d.printSpeed():foralteration the speed,each time display the speed.
+3.Write aprogram which will print whether the elements of a given array are Prime ornot.
+4.Design a class to represent a Bank account.Includethe following members:Data members·Name of the depositor·Account No·Type of Account·Balance amount in the accountMethods·To assign initial values·To deposit an amount·To withdraw an amount after checking balance·To display the name and balance
+
+SOLUTION:-
+Q1.class Factorial {
+    private int number;
+
+    public Factorial(int number) {
+        this.number = number;
+    }
+
+    public long calculateFactorial() {
+        long fact = 1;
+        for (int i = 1; i <= number; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    public static void main(String[] args) {
+        Factorial obj = new Factorial(5); // Change 5 to any input
+        System.out.println("Factorial: " + obj.calculateFactorial());
+    }
+}
+Q2.class Car {
+    private int speed;
+
+    public void carStart() {
+        speed = 30;
+        printSpeed();
+    }
+
+    public void carSlow() {
+        speed = 20;
+        printSpeed();
+    }
+
+    public void carFast() {
+        speed = 30;
+        printSpeed();
+    }
+
+    public void printSpeed() {
+        System.out.println("Current speed: " + speed + " km/h");
+    }
+
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.carStart();
+        myCar.carSlow();
+        myCar.carFast();
+    }
+}
+Q3.class PrimeCheck {
+    private int[] numbers;
+
+    public PrimeCheck(int[] numbers) {
+        this.numbers = numbers;
+    }
+
+    private boolean isPrime(int n) {
+        if (n <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public void checkPrimes() {
+        for (int num : numbers) {
+            if (isPrime(num)) {
+                System.out.println(num + " is Prime.");
+            } else {
+                System.out.println(num + " is Not Prime.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, 4, 9, 11};
+        PrimeCheck pc = new PrimeCheck(arr);
+        pc.checkPrimes();
+    }
+}
+Q4.class BankAccount {
+    private String depositorName;
+    private String accountNumber;
+    private String accountType;
+    private double balance;
+
+    public void assignInitialValues(String name, String accNo, String accType, double initialBalance) {
+        this.depositorName = name;
+        this.accountNumber = accNo;
+        this.accountType = accType;
+        this.balance = initialBalance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient balance.");
+        }
+    }
+
+    public void display() {
+        System.out.println("Name: " + depositorName);
+        System.out.println("Balance: " + balance);
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.assignInitialValues("John", "ACC1234", "Savings", 5000);
+        account.deposit(2000);
+        account.withdraw(1000);
+        account.display();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Constructor
+1.Write a program to print the sum of digits of a five-digit number
+2.Create a class called “Box” whichcontains three variables – width, height and length. Set the values of thevariables using constructor overloading, and also one method “volume” whichreturns the volume of the box. From main function call the volume function ofthe class and print the volume
+.3. Write aprogram to find the slant height, volume, and area of a cone and display allits attributes. The radius, height are the input. These must be got fromcommand line.
+4. Define aclass Baby with the following attributes.a)     Nameb)     Date of Birthc)     Date on which Polio drops to begiven(45 days from date of birth)            Write aconstructor to construct the baby object. The constructor must find out poliodrops date from date of birth. In the main program define a baby and displayits result.
+
+  SOLUTION:-
+  Q1.class DigitSum {
+    private int number;
+
+    public DigitSum(int number) {
+        this.number = number;
+    }
+
+    public int calculateSum() {
+        int sum = 0;
+        int num = number;
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        DigitSum ds = new DigitSum(12345); // Replace with any 5-digit number
+        System.out.println("Sum of digits: " + ds.calculateSum());
+    }
+}
+Q2.class Box {
+    private double width, height, length;
+
+    // Default constructor
+    public Box() {
+        width = height = length = 1;
+    }
+
+    // Parameterized constructor
+    public Box(double w, double h, double l) {
+        width = w;
+        height = h;
+        length = l;
+    }
+
+    public double volume() {
+        return width * height * length;
+    }
+
+    public static void main(String[] args) {
+        Box b1 = new Box(); // Default box
+        Box b2 = new Box(3.5, 4.0, 5.0); // Custom dimensions
+
+        System.out.println("Volume of default box: " + b1.volume());
+        System.out.println("Volume of custom box: " + b2.volume());
+    }
+}
+Q3.class Cone {
+    private double radius;
+    private double height;
+
+    public Cone(double r, double h) {
+        this.radius = r;
+        this.height = h;
+    }
+
+    public double slantHeight() {
+        return Math.sqrt(radius * radius + height * height);
+    }
+
+    public double volume() {
+        return (1.0 / 3) * Math.PI * radius * radius * height;
+    }
+
+    public double area() {
+        return Math.PI * radius * (radius + slantHeight());
+    }
+
+    public void display() {
+        System.out.println("Radius: " + radius);
+        System.out.println("Height: " + height);
+        System.out.println("Slant Height: " + slantHeight());
+        System.out.println("Volume: " + volume());
+        System.out.println("Surface Area: " + area());
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.out.println("Please enter radius and height as command-line arguments.");
+            return;
+        }
+
+        double radius = Double.parseDouble(args[0]);
+        double height = Double.parseDouble(args[1]);
+
+        Cone c = new Cone(radius, height);
+        c.display();
+    }
+}
+Q4.import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+class Baby {
+    private String name;
+    private LocalDate dateOfBirth;
+    private LocalDate polioDate;
+
+    public Baby(String name, String dob) {
+        this.name = name;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.dateOfBirth = LocalDate.parse(dob, formatter);
+        this.polioDate = dateOfBirth.plusDays(45);
+    }
+
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Date of Birth: " + dateOfBirth);
+        System.out.println("Polio Drop Date: " + polioDate);
+    }
+
+    public static void main(String[] args) {
+        Baby baby = new Baby("Aanya", "2025-03-15"); // Input in yyyy-MM-dd format
+        baby.display();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Static variables
+1.Create a class called “mathoperation” which contains a static instance variable“PI” and two static methods “mul” and “div” to multiply and divide two realnumbers.
+Encapsulation
+2.Create aprogram to implement a Queue data structure to store integer data types,defining suitable constructor and member functions (insert & delete).
+3.Create a class called “myclass” and construct three methods named “abs”-(i)                To find the absolute value ofan integer.(ii)              To find the absolute value of afloat.(iii)            To find the absolute value of adouble.
+4. Write aprogram to find the Fibonacci number using Recursion.
+SOLUTION-
+Q1.class MathOperation {
+    static final double PI = 3.141592653589793;
+
+    public static double mul(double a, double b) {
+        return a * b;
+    }
+
+    public static double div(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero.");
+        }
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Multiplication: " + MathOperation.mul(10.5, 2.0));
+        System.out.println("Division: " + MathOperation.div(10.0, 2.5));
+        System.out.println("PI: " + MathOperation.PI);
+    }
+}
+Q2.class Queue {
+    private int[] queue;
+    private int front, rear, size;
+
+    public Queue(int capacity) {
+        queue = new int[capacity];
+        front = rear = -1;
+        size = capacity;
+    }
+
+    public void insert(int value) {
+        if (rear == size - 1) {
+            System.out.println("Queue is full.");
+            return;
+        }
+        if (front == -1) front = 0;
+        queue[++rear] = value;
+        System.out.println("Inserted: " + value);
+    }
+
+    public void delete() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+        System.out.println("Deleted: " + queue[front++]);
+    }
+
+    public void display() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+        System.out.print("Queue elements: ");
+        for (int i = front; i <= rear; i++) {
+            System.out.print(queue[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Queue q = new Queue(5);
+        q.insert(10);
+        q.insert(20);
+        q.display();
+        q.delete();
+        q.display();
+    }
+}
+Q3.class MyClass {
+    public int abs(int x) {
+        return (x < 0) ? -x : x;
+    }
+
+    public float abs(float x) {
+        return (x < 0) ? -x : x;
+    }
+
+    public double abs(double x) {
+        return (x < 0) ? -x : x;
+    }
+
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        System.out.println("Abs of -10 (int): " + obj.abs(-10));
+        System.out.println("Abs of -5.5f (float): " + obj.abs(-5.5f));
+        System.out.println("Abs of -3.1416 (double): " + obj.abs(-3.1416));
+    }
+}
+Q4.class Fibonacci {
+    public static int fib(int n) {
+        if (n <= 1) return n;
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    public static void main(String[] args) {
+        int n = 7; // Find the 7th Fibonacci number
+        System.out.println("Fibonacci number at position " + n + ": " + fib(n));
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Array
+1. Write a javaprogram to sort 1D array in ascending order
+ Inheritance
+2.Write a programto create a class named “vehicle” having protected instance variablesLicence_number, speed, color, owner_name and a method “showdata()” to show“This is a vehicle class”. Inherit the vehicle class and create two subclassesnamed “Bus” and “Car” having individual private instance variable route_no in“Bus” and manufacturer_name in “Car” and both of them having “showdata()”method showing all details of bus and car respectively with content of thesuper class’s “showdata()” method.
+3.Write a java classto multiply two 2D arrays.
+4.. In a telephone billing system the local calls and long distancecalls are rated and billed. Local calls are calculated at the rate of one unitfor 3 minutes and the fractions thereof. In the case of long distance calls(STD calls) the following parameters are used for rating:a)     duration of the callb)     time at which the call was madec)     The area code(STD code)of theorigin and destination of the call
+
+  SOLUTION:-
+  Q1.import java.util.Arrays;
+
+class SortArray {
+    public static void main(String[] args) {
+        int[] arr = {25, 5, 12, 7, 19};
+
+        Arrays.sort(arr);
+
+        System.out.println("Sorted Array in Ascending Order:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+Q2.class Vehicle {
+    protected String licenceNumber;
+    protected int speed;
+    protected String color;
+    protected String ownerName;
+
+    public Vehicle(String licenceNumber, int speed, String color, String ownerName) {
+        this.licenceNumber = licenceNumber;
+        this.speed = speed;
+        this.color = color;
+        this.ownerName = ownerName;
+    }
+
+    public void showData() {
+        System.out.println("This is a vehicle class");
+    }
+}
+
+class Bus extends Vehicle {
+    private int routeNo;
+
+    public Bus(String licenceNumber, int speed, String color, String ownerName, int routeNo) {
+        super(licenceNumber, speed, color, ownerName);
+        this.routeNo = routeNo;
+    }
+
+    public void showData() {
+        super.showData();
+        System.out.println("Bus Details:");
+        System.out.println("License Number: " + licenceNumber);
+        System.out.println("Speed: " + speed);
+        System.out.println("Color: " + color);
+        System.out.println("Owner Name: " + ownerName);
+        System.out.println("Route Number: " + routeNo);
+    }
+}
+
+class Car extends Vehicle {
+    private String manufacturerName;
+
+    public Car(String licenceNumber, int speed, String color, String ownerName, String manufacturerName) {
+        super(licenceNumber, speed, color, ownerName);
+        this.manufacturerName = manufacturerName;
+    }
+
+    public void showData() {
+        super.showData();
+        System.out.println("Car Details:");
+        System.out.println("License Number: " + licenceNumber);
+        System.out.println("Speed: " + speed);
+        System.out.println("Color: " + color);
+        System.out.println("Owner Name: " + ownerName);
+        System.out.println("Manufacturer: " + manufacturerName);
+    }
+
+    public static void main(String[] args) {
+        Bus bus = new Bus("MH01AB1234", 60, "Yellow", "City Transport", 25);
+        Car car = new Car("MH02XY5678", 100, "Red", "John Doe", "Toyota");
+
+        bus.showData();
+        System.out.println();
+        car.showData();
+    }
+}
+Q3.class MatrixMultiplication {
+    public static void main(String[] args) {
+        int[][] A = {
+            {1, 2},
+            {3, 4}
+        };
+
+        int[][] B = {
+            {5, 6},
+            {7, 8}
+        };
+
+        int[][] C = new int[2][2];
+
+        // Multiply A * B
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                C[i][j] = 0;
+                for (int k = 0; k < 2; k++) {
+                    C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        System.out.println("Result of Matrix Multiplication:");
+        for (int[] row : C) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+Q4.class Call {
+    protected int duration;
+    protected String timeOfCall;
+    protected String originCode;
+    protected String destinationCode;
+
+    public Call(int duration, String timeOfCall, String originCode, String destinationCode) {
+        this.duration = duration;
+        this.timeOfCall = timeOfCall;
+        this.originCode = originCode;
+        this.destinationCode = destinationCode;
+    }
+}
+
+class LocalCall extends Call {
+    public LocalCall(int duration, String timeOfCall) {
+        super(duration, timeOfCall, "LOCAL", "LOCAL");
+    }
+
+    public int calculateUnits() {
+        return (int) Math.ceil(duration / 3.0);
+    }
+
+    public void showBill() {
+        System.out.println("Local Call Bill:");
+        System.out.println("Duration: " + duration + " mins");
+        System.out.println("Units Charged: " + calculateUnits());
+        System.out.println("Total Cost: ₹" + calculateUnits() * 1);
+    }
+}
+
+class STDCall extends Call {
+    public STDCall(int duration, String timeOfCall, String originCode, String destinationCode) {
+        super(duration, timeOfCall, originCode, destinationCode);
+    }
+
+    public double calculateCharge() {
+        double rate;
+        if (timeOfCall.equalsIgnoreCase("day")) {
+            rate = 2.0;
+        } else if (timeOfCall.equalsIgnoreCase("night")) {
+            rate = 1.0;
+        } else {
+            rate = 1.5; // evening or other
+        }
+        return duration * rate;
+    }
+
+    public void showBill() {
+        System.out.println("STD Call Bill:");
+        System.out.println("Duration: " + duration + " mins");
+        System.out.println("Time: " + timeOfCall);
+        System.out.println("From: " + originCode + " To: " + destinationCode);
+        System.out.println("Total Cost: ₹" + calculateCharge());
+    }
+
+    public static void main(String[] args) {
+        LocalCall local = new LocalCall(10, "day");
+        STDCall std = new STDCall(5, "night", "022", "011");
+
+        local.showBill();
+        System.out.println();
+        std.showBill();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Abstract class
+1. Create an abstract class
+“ThreeDObject” and derive the classes “Box”,”Cube”,”Cylinder” and “Cone” from
+it. The class “ThreeDObject” has two methods “wholesurfacearea ()” and “volume
+()”. Declare these two methods in each of the derived classes to calculate the
+volume and total surface area of each type of three dimensional objects. The
+three dimensions of the objects are to be protected variables of the
+“ThreeDOject” class.
+Interface
+2. Create an
+interface “Department” containing attributes depName and depHead. It also has
+abstract methods for getting data and printing the attributes. Create a class
+“Hostel” containing attributes hostelName, hostelLocation and noOfRooms. The
+class contains methods for getting and printing the attributes. Then write
+“Student” class extending “Hostel” class and implementing “Department”
+interface. This class contains attributes studentName, regNo, electiveSubject
+and avgMarks. Write suitable getdata and printdata methods for this class. Also
+implement the abstract methods of the “Department” interface. Write a driver
+class to test the “Student” class.
+Package
+1. Create package of some mathematical
+operations. Import those packages and take all inputs for the mathematical
+operation from standard input device
+
+
+Exception
+Handling
+2. Write a program called
+“Factorial.java” that computes factorials and catches the result in an
+arrayoftype long for reuse. The long type of variables has its own range. For
+example 20! Is as high as the range of long type. So checks the argument passed
+and throw an exception if it is too big or too small.
+If x is less than
+0, throw an “IllegalArgumentException” with a message “value of x must be
+positive”. If x is above the length of the array, throw an
+“IllegalArgumentException” with a message “result will overflow.” Here x is the
+value for w2hich we want to find the factorial.
+3. Write a program to throw the exception manually. 
+  SOLUTION-:
+  1.abstract class ThreeDObject {
+    protected double dim1, dim2, dim3;
+
+    public abstract double wholeSurfaceArea();
+    public abstract double volume();
+}
+
+class Box extends ThreeDObject {
+    public Box(double l, double w, double h) {
+        dim1 = l; dim2 = w; dim3 = h;
+    }
+
+    public double wholeSurfaceArea() {
+        return 2 * (dim1 * dim2 + dim2 * dim3 + dim1 * dim3);
+    }
+
+    public double volume() {
+        return dim1 * dim2 * dim3;
+    }
+}
+
+class Cube extends ThreeDObject {
+    public Cube(double side) {
+        dim1 = dim2 = dim3 = side;
+    }
+
+    public double wholeSurfaceArea() {
+        return 6 * dim1 * dim1;
+    }
+
+    public double volume() {
+        return dim1 * dim1 * dim1;
+    }
+}
+
+class Cylinder extends ThreeDObject {
+    public Cylinder(double r, double h) {
+        dim1 = r;
+        dim2 = h;
+    }
+
+    public double wholeSurfaceArea() {
+        return 2 * Math.PI * dim1 * (dim1 + dim2);
+    }
+
+    public double volume() {
+        return Math.PI * dim1 * dim1 * dim2;
+    }
+}
+
+class Cone extends ThreeDObject {
+    public Cone(double r, double h) {
+        dim1 = r;
+        dim2 = h;
+    }
+
+    public double wholeSurfaceArea() {
+        double l = Math.sqrt(dim1 * dim1 + dim2 * dim2);
+        return Math.PI * dim1 * (dim1 + l);
+    }
+
+    public double volume() {
+        return (1.0 / 3) * Math.PI * dim1 * dim1 * dim2;
+    }
+
+    public static void main(String[] args) {
+        Box box = new Box(2, 3, 4);
+        Cube cube = new Cube(5);
+        Cylinder cyl = new Cylinder(3, 7);
+        Cone cone = new Cone(3, 4);
+
+        System.out.println("Box Surface Area: " + box.wholeSurfaceArea() + ", Volume: " + box.volume());
+        System.out.println("Cube Surface Area: " + cube.wholeSurfaceArea() + ", Volume: " + cube.volume());
+        System.out.println("Cylinder Surface Area: " + cyl.wholeSurfaceArea() + ", Volume: " + cyl.volume());
+        System.out.println("Cone Surface Area: " + cone.wholeSurfaceArea() + ", Volume: " + cone.volume());
+    }
+}
+2.interface Department {
+    String depName = "Computer Science";
+    String depHead = "Dr. Sharma";
+
+    void getDepartmentData();
+    void printDepartmentData();
+}
+
+class Hostel {
+    protected String hostelName;
+    protected String hostelLocation;
+    protected int noOfRooms;
+
+    public void getHostelData(String name, String location, int rooms) {
+        hostelName = name;
+        hostelLocation = location;
+        noOfRooms = rooms;
+    }
+
+    public void printHostelData() {
+        System.out.println("Hostel Name: " + hostelName);
+        System.out.println("Location: " + hostelLocation);
+        System.out.println("Number of Rooms: " + noOfRooms);
+    }
+}
+
+class Student extends Hostel implements Department {
+    private String studentName;
+    private String regNo;
+    private String electiveSubject;
+    private double avgMarks;
+
+    public void getStudentData(String name, String reg, String subject, double marks) {
+        studentName = name;
+        regNo = reg;
+        electiveSubject = subject;
+        avgMarks = marks;
+    }
+
+    public void printStudentData() {
+        System.out.println("Student Name: " + studentName);
+        System.out.println("Reg No: " + regNo);
+        System.out.println("Elective Subject: " + electiveSubject);
+        System.out.println("Average Marks: " + avgMarks);
+    }
+
+    public void getDepartmentData() {
+        // Already defined in interface
+    }
+
+    public void printDepartmentData() {
+        System.out.println("Department Name: " + depName);
+        System.out.println("Department Head: " + depHead);
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.getHostelData("Green Hostel", "North Campus", 120);
+        s.getStudentData("Amit Kumar", "CSE1234", "AI", 89.5);
+
+        s.printStudentData();
+        s.printHostelData();
+        s.printDepartmentData();
+    }
+}
+3.package mathops;
+
+public class MathUtils {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int sub(int a, int b) {
+        return a - b;
+    }
+
+    public static int mul(int a, int b) {
+        return a * b;
+    }
+
+    public static double div(double a, double b) {
+        if (b == 0) throw new ArithmeticException("Cannot divide by zero.");
+        return a / b;
+    }
+}
+FILE:-import mathops.MathUtils;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter two integers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println("Add: " + MathUtils.add(a, b));
+        System.out.println("Sub: " + MathUtils.sub(a, b));
+        System.out.println("Mul: " + MathUtils.mul(a, b));
+        System.out.println("Div: " + MathUtils.div(a, b));
+    }
+}
+4.class Factorial {
+    static long[] results = new long[21];
+
+    public static long compute(int x) {
+        if (x < 0) {
+            throw new IllegalArgumentException("Value of x must be positive.");
+        }
+        if (x >= results.length) {
+            throw new IllegalArgumentException("Result will overflow.");
+        }
+        if (results[x] != 0) return results[x];
+
+        results[0] = 1;
+        for (int i = 1; i <= x; i++) {
+            results[i] = results[i - 1] * i;
+        }
+        return results[x];
+    }
+
+    public static void main(String[] args) {
+        try {
+            int x = 20;
+            long fact = compute(x);
+            System.out.println(x + "! = " + fact);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}
+5.class ManualThrow {
+    public static void main(String[] args) {
+        int age = 15;
+
+        try {
+            if (age < 18) {
+                throw new ArithmeticException("Access Denied - You must be 18+");
+            } else {
+                System.out.println("Access Granted - You are old enough.");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Write a
+multithreaded program that continuously prints the strings “Ping”and
+“PONG”in the console in random distance at intervals of one second. Use two
+threads, one for “Ping” and the other for
+“PONG”.
+
+
+5. Write a program to explain the multithreading of multiplication
+Table generation
+
+
+6. Write program
+to implement producer consumer problem in JAVA.
+SOLUTION:-
+  4.import java.util.Random;
+
+class PingThread extends Thread {
+    public void run() {
+        Random rand = new Random();
+        while (true) {
+            int spaces = rand.nextInt(30); // random spacing
+            System.out.printf("%" + spaces + "s\n", "Ping");
+            try {
+                Thread.sleep(1000); // 1 second delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class PongThread extends Thread {
+    public void run() {
+        Random rand = new Random();
+        while (true) {
+            int spaces = rand.nextInt(30);
+            System.out.printf("%" + spaces + "s\n", "PONG");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class PingPongDemo {
+    public static void main(String[] args) {
+        new PingThread().start();
+        new PongThread().start();
+    }
+}
+5.class TableThread extends Thread {
+    private int number;
+
+    public TableThread(int number) {
+        this.number = number;
+    }
+
+    public void run() {
+        System.out.println("Multiplication Table for: " + number);
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " x " + i + " = " + (number * i));
+            try {
+                Thread.sleep(500); // half-second delay between prints
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class MultiTable {
+    public static void main(String[] args) {
+        TableThread t1 = new TableThread(5);
+        TableThread t2 = new TableThread(7);
+        TableThread t3 = new TableThread(9);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+6.import java.util.LinkedList;
+
+class Buffer {
+    private final int capacity = 5;
+    private LinkedList<Integer> list = new LinkedList<>();
+
+    public synchronized void produce(int value) throws InterruptedException {
+        while (list.size() == capacity) {
+            wait(); // wait for consumer
+        }
+        list.add(value);
+        System.out.println("Produced: " + value);
+        notify(); // notify consumer
+    }
+
+    public synchronized void consume() throws InterruptedException {
+        while (list.isEmpty()) {
+            wait(); // wait for producer
+        }
+        int value = list.removeFirst();
+        System.out.println("Consumed: " + value);
+        notify(); // notify producer
+    }
+}
+
+class Producer extends Thread {
+    private Buffer buffer;
+
+    public Producer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        int i = 0;
+        while (true) {
+            try {
+                buffer.produce(i++);
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class Consumer extends Thread {
+    private Buffer buffer;
+
+    public Consumer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                buffer.consume();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class ProducerConsumerTest {
+    public static void main(String[] args) {
+        Buffer sharedBuffer = new Buffer();
+        new Producer(sharedBuffer).start();
+        new Consumer(sharedBuffer).start();
+    }
+}
+//NOTIFYALL
+import java.util.LinkedList;
+
+class Buffer {
+    private final int capacity = 5;
+    private LinkedList<Integer> list = new LinkedList<>();
+
+    public synchronized void produce(int value) throws InterruptedException {
+        while (list.size() == capacity) {
+            wait();
+        }
+        list.add(value);
+        System.out.println("Produced: " + value);
+        notifyAll();
+    }
+
+    public synchronized void consume() throws InterruptedException {
+        while (list.isEmpty()) {
+            wait();
+        }
+        int value = list.removeFirst();
+        System.out.println("Consumed: " + value);
+        notifyAll();
+    }
+}
+
+class Producer extends Thread {
+    private Buffer buffer;
+
+    public Producer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        int i = 0;
+        while (true) {
+            try {
+                buffer.produce(i++);
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class Consumer extends Thread {
+    private Buffer buffer;
+
+    public Consumer(Buffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                buffer.consume();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class ProducerConsumerTest {
+    public static void main(String[] args) {
+        Buffer sharedBuffer = new Buffer();
+        new Producer(sharedBuffer).start();
+        new Consumer(sharedBuffer).start();
+    }
+}
+
